@@ -1,0 +1,16 @@
+# Application Config
+spring:
+  application:
+    name: lora-mqtt-telegram-iot-app-backend
+
+# Telegram Config
+bot:
+  name: LoRaMQTTTelegramIoTBot
+  token: 8483996089:AAH3rq_f-TKF8sGaIrKlikNpaJitq831o7Y
+  chat-ids-file: chat-ids.txt
+
+# MQTT
+mqtt:
+  client-id: bf6b3de92a6aecf33ce5680f4c957d980a73fad1
+  broker-url: ${BROKER_URL:tcp://localhost:1883}
+  subscribe-topic: ${SUBSCRIBE_TOPIC:lora/rx}

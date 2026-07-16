@@ -1,0 +1,65 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '4.0.4'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.furkankayam'
+version = 'v.0.1'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+    springdocVersion = '2.8.0'
+    telegramBotVersion = '6.9.7.0'
+    apacheCommonsVersion = '3.14.0'
+}
+
+dependencies {
+    // --- Core ---
+	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+
+    // --- Telegram Bot ---
+    implementation "org.telegram:telegrambots-spring-boot-starter:${telegramBotVersion}"
+
+    // --- Apache Commons ---
+    implementation "org.apache.commons:commons-lang3:${apacheCommonsVersion}"
+
+    // MQTT dependencies
+    implementation "org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5"
+
+    // JSON processing
+    implementation 'org.json:json:20250517'
+
+    // --- Lombok ---
+	compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // --- Development Tools ---
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // --- Swagger / OpenAPI ---
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}"
+
+    // --- Test ---
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
